@@ -206,7 +206,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_SPCFUNC] = LAYOUT_split_4x6_3(
       KC_TAB,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                                        KC_6,    KC_7,    KC_8,    KC_9,    KC_0,   KC_BSPC,
   //,-----------------------------------------------------.                                    ,-----------------------------------------------------.
-      ALT_TAB,    KC_1,    KC_2,    KC_3, A(KC_F4),    KC_5,                                      KC_6,    KC_7,    KC_8,    KC_9,    KC_0, C(KC_BSPC),
+      KC_TAB,    KC_1,    KC_2,    KC_3, A(KC_F4),    KC_5,                                      KC_6,    KC_7,    KC_8,    KC_9,    KC_0, C(KC_BSPC),
   //|--------+--------+--------+--------+--------+--------|                                    |--------+--------+--------+--------+--------+--------|
       KC_LCTL, C(KC_A), LSG(KC_S), XXXXXXX, XXXXXXX, XXXXXXX,                                 C(KC_LEFT), C(KC_DOWN), C(KC_UP),C(KC_RIGHT), XXXXXXX, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                                    |--------+--------+--------+--------+--------+--------|
