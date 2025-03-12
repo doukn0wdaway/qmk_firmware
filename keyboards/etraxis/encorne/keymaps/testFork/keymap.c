@@ -31,8 +31,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define MO_ADJ MO(_ADJUST)
 #define KC_REDO C(KC_U)
 #define FL_SPC LT(_BASE, KC_SPC)
-#define LT_NUM1_GAME_RAISE LT(_GAME_RAISE, KC_NUM1)
-#define FL_ENT LT(_ENTFUNC, KC_ENT)
+#define LT_P1_GAME_RAISE LT(_GAME_RAISE, KC_P1)
 
 const uint16_t copy = C(KC_C);
 const uint16_t paste = C(KC_V);
@@ -43,18 +42,18 @@ enum combos {
     RESET_L,
     RESET_R,
     RUS_H,
-    F1,
-    F2,
-    F3,
-    F4,
-    F5,
-    F6,
-    F7,
-    F8,
-    F9,
-    F10,
-    F11,
-    F12
+    FN_F1,
+    FN_F2,
+    FN_F3,
+    FN_F4,
+    FN_F5,
+    FN_F6,
+    FN_F7,
+    FN_F8,
+    FN_F9,
+    FN_F10,
+    FN_F11,
+    FN_F12
 };
 
 const uint16_t PROGMEM p_backspace_combo[] = {KC_P, KC_BSPC, COMBO_END};
@@ -71,36 +70,31 @@ const uint16_t PROGMEM u7_combo[] = {KC_U, KC_7, COMBO_END};
 const uint16_t PROGMEM i8_combo[] = {KC_I, KC_8, COMBO_END};
 const uint16_t PROGMEM o9_combo[] = {KC_O, KC_9, COMBO_END};
 const uint16_t PROGMEM p0_combo[] = {KC_P, KC_0, COMBO_END};
-const uint16_t PROGMEM bspc_scrolllock_combo[] = {KC_BSPC, ,KC_SCRL COMBO_END};
+const uint16_t PROGMEM bspc_scrolllock_combo[] = {KC_BSPC, KC_SCRL, COMBO_END};
 
 
 combo_t key_combos[] = {
     [RUS_H] = COMBO(p_backspace_combo, KC_LBRC),
     [RESET_L] = COMBO(zsefb_combo, QK_BOOT),
     [RESET_R] = COMBO(njil_backslash_combo, QK_BOOT),
-    [F1] = COMBO(esc_tab_combo, KC_F1),
-    [F2] = COMBO(q1_combo, KC_F2),
-    [F3] = COMBO(w2_combo, KC_F3),
-    [F4] = COMBO(e3_combo, KC_F4),
-    [F5] = COMBO(r4_combo, KC_F5),
-    [F6] = COMBO(t5_combo, KC_F6),
-    [F7] = COMBO(y6_combo, KC_F7),
-    [F8] = COMBO(u7_combo, KC_F8),
-    [F9] = COMBO(i8_combo, KC_F9),
-    [F10] = COMBO(o9_combo, KC_F10),
-    [F11] = COMBO(p0_combo, KC_F11),
-    [F12] = COMBO(bspc_scrolllock_combo, KC_F12),
+    [FN_F1] = COMBO(esc_tab_combo, KC_F1),
+    [FN_F2] = COMBO(q1_combo, KC_F2),
+    [FN_F3] = COMBO(w2_combo, KC_F3),
+    [FN_F4] = COMBO(e3_combo, KC_F4),
+    [FN_F5] = COMBO(r4_combo, KC_F5),
+    [FN_F6] = COMBO(t5_combo, KC_F6),
+    [FN_F7] = COMBO(y6_combo, KC_F7),
+    [FN_F8] = COMBO(u7_combo, KC_F8),
+    [FN_F9] = COMBO(i8_combo, KC_F9),
+    [FN_F10] = COMBO(o9_combo, KC_F10),
+    [FN_F11] = COMBO(p0_combo, KC_F11),
+    [FN_F12] = COMBO(bspc_scrolllock_combo, KC_F12),
 };
 
 
-
-bool is_alt_tab_active = false; // ADD this near the beginning of keymap.c
-enum custom_keycodes {          // Make sure have the awesome keycode ready
-  ALT_TAB = SAFE_RANGE,
-};
 
 bool is_combo_in_enum(uint16_t combo_index) {
-    return (combo_index >= RESET_L && combo_index <= F12);
+    return (combo_index >= RESET_L && combo_index <= FN_F12);
 }
 
 bool combo_should_trigger(uint16_t combo_index, combo_t *combo, uint16_t keycode, keyrecord_t *record) {
@@ -139,7 +133,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                                  |--------+--------+--------+--------+--------+--------|
       KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                                       KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH,  KC_ESC,
   //|--------+--------+--------+--------+--------+--------+--------|                |--------+--------+--------+--------+--------+--------+--------|
-                                           KC_LGUI,   MO_L,  FL_SPC, KC_LALT, TG(_GAME),   FL_ENT,    MO_R, KC_LALT
+                                           KC_LGUI,   MO_L,  FL_SPC, KC_LALT, TG(_GAME),   KC_ENT,    MO_R, KC_LALT
                                       //`--------------------------'                `--------------------------'
 
   ),
@@ -191,7 +185,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                                    |--------+--------+--------+--------+--------+--------|
       KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                                         KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH,  KC_ESC,
   //|--------+--------+--------+--------+--------+--------+--------|                  |--------+--------+--------+--------+--------+--------+--------|
-                                          KC_NUM2,   LT_NUM1_GAME_RAISE,  KC_SPC,     KC_Z,   TG(_GAME),   KC_ENT,   KC_NUM4, KC_LALT
+                                          KC_P2,   LT_P1_GAME_RAISE,  KC_SPC,     KC_Z,   TG(_GAME),   KC_ENT,   KC_P4, KC_LALT
                                       //`--------------------------'                  `--------------------------'
   ),
 
@@ -204,7 +198,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                                    |--------+--------+--------+--------+--------+--------|
       KC_LSFT, KC_SLSH,  KC_DOT, KC_COMM,    KC_M,    KC_N,                                         KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH,  KC_ESC,
   //|--------+--------+--------+--------+--------+--------+--------|                  |--------+--------+--------+--------+--------+--------+--------|
-                                          KC_NUM3, _______,  KC_SPC, KC_Z,  TG(_GAME),   KC_ENT, KC_NUM4, KC_LALT
+                                          KC_P3, _______,  KC_SPC, KC_Z,  TG(_GAME),   KC_ENT, KC_P4, KC_LALT
                                       //`--------------------------'                  `--------------------------'
   ),
 
@@ -230,7 +224,6 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
     [_RAISE] =  { ENCODER_CCW_CW(RGB_VAD, RGB_VAI),           ENCODER_CCW_CW(RGB_SPD, RGB_SPI)  },
     [_ADJUST] = { ENCODER_CCW_CW(RGB_RMOD, RGB_MOD),          ENCODER_CCW_CW(KC_RIGHT, KC_LEFT) },
     [_GAME] =   { ENCODER_CCW_CW(KC_UP, KC_DOWN),          ENCODER_CCW_CW(KC_RIGHT, KC_LEFT) },
-    [_ENTFUNC] =   { ENCODER_CCW_CW(KC_VOLU, KC_VOLD),          ENCODER_CCW_CW(KC_MRWD, KC_MFFD) },
     [_SPCFUNC] =   { ENCODER_CCW_CW(KC_VOLU, KC_VOLD),          ENCODER_CCW_CW(KC_UNDO, KC_REDO) },
 };
 #endif
