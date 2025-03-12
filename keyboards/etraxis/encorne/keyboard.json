@@ -2,10 +2,9 @@
   "manufacturer": "doukn0wdaway",
   "keyboard_name": "encorne",
   "maintainer": "doukn0wdaway",
-  "bootloader": "atmel-dfu",
+  "bootloader": "caterina",
   "diode_direction": "COL2ROW",
   "features": {
-    "bootmagic": true,
     "command": false,
     "console": false,
     "extrakey": true,

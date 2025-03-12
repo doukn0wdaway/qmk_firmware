@@ -16,8 +16,9 @@
 #define BOOTMAGIC_ROW 0
 #define BOOTMAGIC_COLUMN 0
 
-#define ENCODERS_PAD_A { F4 }
-#define ENCODERS_PAD_B { F5 }
+
+#define ENCODER_A_PINS { F4 }
+#define ENCODER_B_PINS { F5 }
 #define ENCODER_RESOLUTIONS { 4 }
 #define ENCODER_MAP_KEY_DELAY 10
 #define TAPPING_TERM 150
