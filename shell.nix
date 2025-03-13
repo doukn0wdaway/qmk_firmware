@@ -67,6 +67,9 @@ mkShell {
   shellHook = ''
     # Prevent the avr-gcc wrapper from picking up host GCC flags
     # like -iframework, which is problematic on Darwin
+    alias flash-left="sudo qmk flash -c -kb etraxis/encorne -km testFork -bl avrdude-split-left"
+    alias flash-right="sudo qmk flash -c -kb etraxis/encorne -km testFork -bl avrdude-split-right"
+    alias edit="nvim ./keyboards/etraxis/encorne"
     unset NIX_CFLAGS_COMPILE_FOR_TARGET
   '';
 }

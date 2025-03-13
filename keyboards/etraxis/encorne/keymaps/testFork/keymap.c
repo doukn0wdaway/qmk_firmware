@@ -24,6 +24,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define _GAME_RAISE 5
 #define _SPCFUNC 6
 #include QMK_KEYBOARD_H
+#include "print.h"
 
 // custom defines for short kc
 #define MO_L MO(_LOWER)
@@ -32,6 +33,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define KC_REDO C(KC_U)
 #define FL_SPC LT(_BASE, KC_SPC)
 #define LT_P1_GAME_RAISE LT(_GAME_RAISE, KC_P1)
+
+void keyboard_post_init_user(void) {
+  // Customise these values to desired behaviour
+  debug_enable=true;
+  // debug_matrix=true;
+  // debug_keyboard=true;
+  // debug_mouse=true;
+}
 
 const uint16_t copy = C(KC_C);
 const uint16_t paste = C(KC_V);
@@ -72,6 +81,16 @@ const uint16_t PROGMEM o9_combo[] = {KC_O, KC_9, COMBO_END};
 const uint16_t PROGMEM p0_combo[] = {KC_P, KC_0, COMBO_END};
 const uint16_t PROGMEM bspc_scrolllock_combo[] = {KC_BSPC, KC_SCRL, COMBO_END};
 
+bool combo_should_trigger(uint16_t combo_index, combo_t *combo, uint16_t keycode, keyrecord_t *record) {
+    uprintf("Current layer: 0x%02X\n", layer_state);
+
+    if (layer_state_is(_GAME) || layer_state_is(_GAME_RAISE)) {
+        uprintf("Combo blocked on _GAME or _GAME_RAISE layer\n");
+        return false;
+    }
+
+    return true;
+}
 
 combo_t key_combos[] = {
     [RUS_H] = COMBO(p_backspace_combo, KC_LBRC),
@@ -91,36 +110,6 @@ combo_t key_combos[] = {
     [FN_F12] = COMBO(bspc_scrolllock_combo, KC_F12),
 };
 
-
-
-bool is_combo_in_enum(uint16_t combo_index) {
-    return (combo_index >= RESET_L && combo_index <= FN_F12);
-}
-
-bool combo_should_trigger(uint16_t combo_index, combo_t *combo, uint16_t keycode, keyrecord_t *record) {
-    if (is_combo_in_enum(combo_index) && layer_state_is(_BASE)) {
-        return true;
-    }
-
-    return false;
-}
-
-
-void leader_end_user(void) {
-    if (leader_sequence_one_key(KC_F)) {
-        // Leader, f => Types the below string
-        SEND_STRING("QMK is awesome.");
-    } else if (leader_sequence_two_keys(KC_D, KC_D)) {
-        // Leader, d, d => Ctrl+A, Ctrl+C
-        SEND_STRING(SS_LCTL("a") SS_LCTL("c"));
-    } else if (leader_sequence_three_keys(KC_D, KC_D, KC_S)) {
-        // Leader, d, d, s => Types the below string
-        SEND_STRING("https://start.duckduckgo.com\n");
-    } else if (leader_sequence_two_keys(KC_A, KC_S)) {
-        // Leader, a, s => GUI+S
-        tap_code16(LGUI(KC_S));
-    }
-}
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {

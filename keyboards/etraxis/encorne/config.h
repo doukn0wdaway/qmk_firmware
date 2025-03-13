@@ -7,11 +7,10 @@
  * Feature disable options
  *  These options are also useful to firmware size reduction.
  */
+
 #define SOFT_SERIAL_PIN D3
 #define SELECT_SOFT_SERIAL_SPEED 2
 #define MASTER_RIGHT
-
-
 
 #define BOOTMAGIC_ROW 0
 #define BOOTMAGIC_COLUMN 0
@@ -24,7 +23,7 @@
 #define TAPPING_TERM 150
 /* disable debug print */
 //#define NO_DEBUG
-
+#define DEBUG_ENABLE      true
 /* disable print */
 //#define NO_PRINT
 
