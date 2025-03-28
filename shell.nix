@@ -69,7 +69,8 @@ mkShell {
     # like -iframework, which is problematic on Darwin
     alias flash-left="sudo qmk flash -c -kb etraxis/encorne -km testFork -bl avrdude-split-left"
     alias flash-right="sudo qmk flash -c -kb etraxis/encorne -km testFork -bl avrdude-split-right"
-    alias edit="nvim ./keyboards/etraxis/encorne"
+    alias flash-midi="sudo qmk flash -c -kb etraxis/midi -km default"
+    alias cdf="cd ./keyboards/etraxis"
     unset NIX_CFLAGS_COMPILE_FOR_TARGET
   '';
 }
