@@ -1,8 +1,11 @@
 # This file intentionally left blank
 SPLIT_KEYBOARD = yes
 COMBO_ENABLE = yes
-BOOTMAGIC_ENABLE = yes
 ENCODER_ENABLE = yes
 ENCODER_MAP_ENABLE = yes
-LEADER_ENABLE = yes
-CONSOLE_ENABLE = yes
+LTO_ENABLE = yes
+
+BOOTMAGIC_ENABLE = no
+LEADER_ENABLE = no
+CONSOLE_ENABLE = no
+
